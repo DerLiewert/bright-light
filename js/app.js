@@ -6258,7 +6258,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 let audioDuration = getDuration();
                 percentWidthPerSecond = barWidth / audioDuration * 100 / barWidth;
                 widthPerSecond = barWidth / audioDuration;
-                thumb.style.transform = `translate(${widthPerSecond * currentTime - thumb.offsetWidth / 1.5}px, -50%)`;
+                thumb.style.transform = `translate3d(${widthPerSecond * currentTime - thumb.offsetWidth / 1.5}px, -50%, 0)`;
                 progressBar.querySelector(".player__progress").style.width = percentWidthPerSecond * currentTime + "%";
             }
             function endedMusic() {
