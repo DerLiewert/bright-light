@@ -1,0 +1,296 @@
+// Заголовки, загальні БЕМ блоки та інше...
+
+.title {
+  font-weight: 700;
+  font-size: toRem(48);
+  line-height: math.div(72, 48);
+  display: flex;
+  gap: toRem(30);
+  &::before {
+    content: '';
+    flex: 0 0 toRem(64);
+    height: toRem(31);
+    background: url('@img/title-decor.svg') no-repeat center;
+    background-size: contain;
+    position: relative;
+    top: toRem(21);
+  }
+  @media (max-width: $tablet) {
+    font-size: toRem(42);
+    gap: toRem(25);
+    &::before {
+      flex: 0 0 toRem(61);
+      height: toRem(28);
+      top: toRem(18);
+    }
+  }
+  @media (max-width: $mobile) {
+    font-size: toRem(36);
+    gap: toRem(20);
+    &::before {
+      flex: 0 0 toRem(58);
+      height: toRem(25);
+      top: toRem(14);
+    }
+  }
+  @media (max-width: $mobileSmall) {
+    font-size: toRem(28);
+    gap: toRem(15);
+    &::before {
+      flex: 0 0 toRem(52);
+      height: toRem(20);
+      top: toRem(11);
+    }
+  }
+}
+
+//========================================================================================================================================================
+.player {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  column-gap: toRem(45);
+  row-gap: toRem(15);
+  @media (max-width: $mobile) {
+    column-gap: toRem(30);
+  }
+  @media (max-width: toEm(600)) {
+    flex-direction: column;
+  }
+  &__audio {
+  }
+
+  &__play-btn {
+    width: toRem(22);
+    height: toRem(24);
+    position: relative;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      height: 100%;
+    }
+    &::before {
+      left: 0;
+    }
+    &::after {
+      right: 0;
+      border-left: toRem(22) solid $mainColor;
+      border-top: toRem(12) solid transparent;
+      border-bottom: toRem(12) solid transparent;
+    }
+    &._play {
+      &::before {
+        left: toRem(2);
+        border-left: toRem(5) solid $mainColor;
+      }
+      &::after {
+        right: toRem(2.5);
+        border-left-width: toRem(5);
+        border-top: none;
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: toEm(600)) {
+      &:not(:last-child) {
+        margin-bottom: toRem(15);
+      }
+    }
+
+    @media (max-width: $mobileSmall) {
+      &:not(:last-child) {
+        margin-bottom: toRem(10);
+      }
+    }
+  }
+
+  &__progress-bar {
+    flex: 1 1 auto;
+    height: toRem(2);
+    background-color: $mainColor;
+    position: relative;
+    cursor: pointer;
+    &::before {
+      content: '';
+      position: absolute;
+      height: 300%;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+    @media (max-width: toEm(600)) {
+      width: 100%;
+      margin-bottom: toRem(5);
+    }
+
+    @media (max-width: $mobileSmall) {
+      margin-bottom: 0;
+    }
+  }
+
+  &__progress {
+    height: 100%;
+    width: 0;
+    background-color: $accent;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &__thumb {
+    height: toRem(20);
+    width: toRem(2);
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba($accent, 0.5);
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 400%;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &__time {
+    min-width: toRem(112);
+    font-weight: 500;
+    line-height: math.div(27, 18);
+    white-space: nowrap;
+    text-align: right;
+    &_current {
+    }
+
+    &_diration {
+    }
+    @media (max-width: $mobile) {
+      //min-width: toRem(100);
+      font-size: toRem(16);
+      text-align: center;
+    }
+    @media (max-width: $mobileSmall) {
+      font-size: toRem(14);
+    }
+  }
+}
+
+//========================================================================================================================================================
+
+.gallery {
+  .lg-outer {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 47px calc(100% - 47px);
+    @media (max-width: $pc) {
+      grid-template-columns: 65% 35%;
+    }
+    @media (max-width: $tablet) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .lg-toolbar {
+    position: static;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    @media (max-width: $tablet) {
+      order: 1;
+    }
+  }
+  .lg-content {
+    position: relative !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+
+    @media (min-width: $mobile) {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      margin: 0 20px;
+
+      button {
+        position: static;
+        //transform: translateY(-50%);
+        margin-top: 0;
+
+        &.lg-prev {
+          order: 1;
+        }
+        &.lg-next {
+          order: 3;
+        }
+      }
+    }
+    @media (min-width: $tablet) {
+      margin-right: 0;
+    }
+
+    .lg-inner {
+      position: relative;
+      flex: 1 1 100%;
+      height: 100%;
+      order: 2;
+      overflow: hidden;
+    }
+
+    .lg-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @media (max-width: $tablet) {
+      flex: 1 1 auto;
+      min-height: 100px;
+      order: 2;
+    }
+  }
+  .lg-components {
+    position: static;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: flex;
+    align-items: center;
+    margin: 0;
+
+    .lg-sub-html {
+      font-family: 'Poppins';
+      text-align: left;
+      font-size: 48px;
+      font-weight: 500;
+      line-height: 1.2;
+      padding-right: 30px;
+      width: 100%;
+      @media (max-width: $pc) {
+        font-size: 32px;
+      }
+      @media (max-width: $tablet) {
+        text-align: center;
+        font-size: 24px;
+      }
+      @media (max-width: $mobile) {
+        font-size: 18px;
+      }
+      @media (max-width: $mobileSmall) {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: $tablet) {
+      margin-top: 20px;
+      order: 3;
+    }
+  }
+}
