@@ -692,8 +692,7 @@ body {
   left: 0;
   -webkit-transform: translate3d(-50%,-50%,0);
   transform: translate3d(-50%,-50%,0);
-  background-color: #7a66cc;
-  position: relative
+  background-color: #7a66cc
 }
 .player__thumb::before {
   content: "";
@@ -990,6 +989,9 @@ body {
   line-height: 1.2;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: .0625rem #fff
+}
+.intro__player .player__progress {
+  background-color: #876eec
 }
 .news {
   margin-top: -9.3125rem;

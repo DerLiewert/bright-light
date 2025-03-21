@@ -359,12 +359,12 @@
             }
         }
         function menuOpen() {
-            bodyLock();
+            bodyLock(0);
             document.documentElement.classList.add("menu-open");
             document.querySelector(".icon-menu").setAttribute("aria-label", "Close menu");
         }
         function menuClose() {
-            bodyUnlock();
+            bodyUnlock(0);
             document.documentElement.classList.remove("menu-open");
             document.querySelector(".icon-menu").setAttribute("aria-label", "Open menu");
         }
@@ -6205,6 +6205,7 @@ PERFORMANCE OF THIS SOFTWARE.
             progressBar.addEventListener("click", (e => {
                 e.preventDefault();
                 if (!audio) initAudio();
+                console.log(e.clientX);
                 updatePlayer(e.clientX);
             }));
             thumb.addEventListener(isMobile.any() ? "touchstart" : "mousedown", (e => {
