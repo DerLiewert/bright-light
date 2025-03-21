@@ -689,6 +689,7 @@ body {
   width: .125rem;
   position: absolute;
   top: 50%;
+  left: 0;
   -webkit-transform: translate3d(-50%,-50%,0);
   transform: translate3d(-50%,-50%,0);
   background-color: #7a66cc;
